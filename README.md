@@ -1,1 +1,1 @@
-# TripWIse
+# TripWise
