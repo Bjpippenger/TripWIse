@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// File: src/App.jsx
+import React, { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [departureCity, setDepartureCity] = useState('');
+  const [arrivalCity, setArrivalCity] = useState('');
+  const [travelDate, setTravelDate] = useState('');
+  const [activities, setActivities] = useState([]);
+
+  const handleDepartureCityChange = (event) => {
+    setDepartureCity(event.target.value);
+  };
+
+  const handleArrivalCityChange = (event) => {
+    setArrivalCity(event.target.value);
+  };
+
+  const handleTravelDateChange = (event) => {
+    setTravelDate(event.target.value);
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    // Perform any action needed with flight details, such as fetching activities for the specified cities
+    // For now, let's just log the details
+    console.log('Departure City:', departureCity);
+    console.log('Arrival City:', arrivalCity);
+    console.log('Travel Date:', travelDate);
+    // You can add further logic here, such as fetching activities for the specified cities
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>TripWise App</h1>
+      <form onSubmit={handleFormSubmit}>
+        <label>
+          Departure City:
+          <input type="text" value={departureCity} onChange={handleDepartureCityChange} />
+        </label>
+        <br />
+        <label>
+          Arrival City:
+          <input type="text" value={arrivalCity} onChange={handleArrivalCityChange} />
+        </label>
+        <br />
+        <label>
+          Travel Date:
+          <input type="date" value={travelDate} onChange={handleTravelDateChange} />
+        </label>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+      <h2>Activities:</h2>
+      <ul>
+        {activities.map((activity, index) => (
+          <li key={index}>{activity}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+export default App;
